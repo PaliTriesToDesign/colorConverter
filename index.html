@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hex Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css' integrity='sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==' crossorigin='anonymous' referrerpolicy='no-referrer' />
+</head>
+<body>
+    <main class="main">
+        <h1 class="title">Color Converter</h1>
+        <div class="option-container">
+            <div class="option-button hex-to-rgb active-option">
+                <p>Hex to RGB</p>
+            </div>
+            <div class="option-button rgb-to-hex">
+                <p>RGB to Hex</p>
+            </div>
+        </div>
+
+        <div class="color-options-wrapper">
+            <div class="container">
+                <div class="input-container">
+                    <label for="hex">Hex:</label>
+                    <div class="input-wrapper">
+                        <p>#</p>
+                        <input type="text" id="hex" placeholder="Hex Code">
+                    </div>
+                    <button class="convert-button">
+                        <i class="fa-solid fa-arrows-turn-to-dots"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="colors">
+                <div class="color-wrapper">
+                    <div class="color-preview">
+                    </div>
+                    <p>Color</p>
+                </div>
+                <div class="color-wrapper">
+                    <div class="shade-color">
+                    </div>
+                    <p>Shade</p>
+                </div>
+                <div class="color-wrapper">
+                    <div class="complementary-color">
+                    </div>
+                    <p>Comp</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>
