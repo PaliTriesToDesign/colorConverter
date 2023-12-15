@@ -163,8 +163,30 @@ main {
     border: none;
     background: none;
     cursor: pointer;
+
+    position: relative;
 }
 .error-message {
     color: var(--main-color);
     font-weight: bold;
+}
+.copy-tool-tip {
+    position: absolute;
+    top: -140%;
+    left: -50%;
+    background-color: var(--main-color);
+    color: white;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.7rem;
+    border-radius: var(--border-radius);
+}
+.copy-tool-tip::after {
+    content: '';
+    position: absolute;
+    bottom: -0.125rem;
+    left: 20%;
+    background-color: var(--main-color);
+    transform: rotate(45deg);
+    width: 0.5rem;
+    height: 0.5rem;
 }

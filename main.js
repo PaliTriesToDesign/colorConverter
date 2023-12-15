@@ -104,25 +104,15 @@ function hexFunctionalities(inputContainer, mainContainer){
 
     convertButton.addEventListener('click', () => {
         let body = document.querySelector('body');
-        let colorPreviewText  = document.querySelector('.color-content-wrapper');
-
-        if(document.querySelector('.result')){
-            document.querySelector('.result').remove();
-        };
-        
-        let result = document.createElement('p');
-        result.classList.add('result');
+        let colorPreviewText  = document.querySelector('.color-content-wrapper');        
         let hexValue = '#' + userInput.value.toUpperCase();
+        let result = document.createElement('p');
                 
         if(hexValue.length === 7){
             inputContainer.appendChild(result);
             colorPreview.style.backgroundColor = hexValue;
             colorPreview.classList.add('active-color');
-            result.style.color = '#0a0c30';
-            result.innerHTML = `<b>${hexToRgb(hexValue)}</b>
-            <button class="copy-button" onclick="copyToClipboard()">
-                <i class="fa-regular fa-clone"></i>
-            </button>`;
+            createResults(result, hexValue);
 
             let luminance = getBrightness(hexValue);
 
@@ -133,10 +123,8 @@ function hexFunctionalities(inputContainer, mainContainer){
             };
             convertComponents(convertButton, optionsButtons, hexValue, getBrightness(hexValue));
         } else {
-            colorPreview.classList.remove('active-color');
-            result.classList.add('error-message');
-            body.appendChild(result);
-            result.innerText = `Enter a valid value`;  
+            colorPreview.classList.remove('active-color');  
+            createWarningMessage(result, body);
         };
     });
 };
@@ -163,6 +151,42 @@ function createRgbInput(){
     return inputWrapper;
 };
 
+function createResults(result, hexValue){
+    removeMessages();
+    result.classList.add('result');
+    result.style.color = '#0a0c30';
+    result.innerHTML = `<b>${hexToRgb(hexValue)}</b>
+        <button class="copy-button">
+        <i class="fa-regular fa-clone"></i>
+        </button>`;
+
+    let copyButton = document.querySelector('.copy-button');
+    copyButton.addEventListener('click', () => {
+        copyToClipboard(result);
+        copyButton.appendChild(copiedTooltip());
+        setTimeout(() => {
+            document.querySelector('.copy-tool-tip').remove();
+        }, 1000);
+    });
+};
+
+function createWarningMessage(result, body){
+    removeMessages();
+    result.classList.add('error-message');
+    body.appendChild(result);
+    result.innerText = `Enter a valid value`;
+};
+
+function removeMessages(){
+    if(document.querySelector('.error-message')){
+        document.querySelector('.error-message').remove();
+    };
+    if(document.querySelector('.result')){
+        document.querySelector('.result').remove();
+    };
+    
+}
+
 function resetStates(button, results, colorPreview){
     if(button.classList.contains('active-option')){
         button.style.backgroundColor = 'var(--main-color)';
@@ -177,8 +201,7 @@ function resetStates(button, results, colorPreview){
     colorPreview.classList.remove('active-color');
 };
 
-function copyToClipboard(){
-    let result = document.querySelector('.result');
+function copyToClipboard(result){
     let resultText = result.innerText;
     let tempInput = document.createElement('input');
     tempInput.value = resultText;
@@ -186,4 +209,11 @@ function copyToClipboard(){
     tempInput.select();
     document.execCommand('copy');
     document.body.removeChild(tempInput);
+}
+
+function copiedTooltip(){
+    let copiedTooltip = document.createElement('div');
+    copiedTooltip.classList.add('copy-tool-tip');
+    copiedTooltip.innerText = 'Copied!';
+    return copiedTooltip;
 }
