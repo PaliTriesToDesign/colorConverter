@@ -11,7 +11,7 @@
 <body>
     <main class="main">
         <div class="option-container">
-            <div class="option-button hex-to-rgb active-option">
+            <div class="option-button hex-to-rgb">
                 <p>Hex to RGB</p>
             </div>
             <div class="option-button rgb-to-hex">
@@ -19,22 +19,31 @@
             </div>
         </div>
 
-        <div class="input-container">
-            <label for="hex">HEX:</label>
-            <div class="input-wrapper">
+        <!-- <div class="input-container"> -->
+            <!-- <div class="input-wrapper">
                 <p>#</p>
-                <input type="text" id="hex" placeholder="">
+                <input pattern="[a-zA-Z0-9]" type="text" id="hex" placeholder="">
                 <button class="convert-button">
                     <i class="fa-solid fa-arrow-rotate-left"></i>
                 </button>
-            </div>
-        </div>
+            </div> -->
+            <!-- <div class="input-wrapper">
+                <p>rgb(</p>
+                <input type="number" min="0" max="255" id="red" placeholder="0">
+                <p>,</p>
+                <input type="number" min="0" max="255" id="green" placeholder="0">
+                <p>,</p>
+                <input type="number" min="0" max="255" id="blue" placeholder="0">
+                <p>)</p>
+                <button class="convert-button">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                </button>
+            </div> -->
+        <!-- </div> -->
 
         <div class="colors">
             <div class="color-wrapper">
                 <div class="color-content-wrapper">
-                    <p>rgb(255, 255, 0)</p>
-                    <i class="fa-regular fa-clone"></i>
                 </div>
             </div>
         </div>

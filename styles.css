@@ -23,6 +23,7 @@ body {
 
     font-family: 'Roboto', sans-serif;
     background-color: var(--bg-color);
+    margin: 1rem;
 }
 
 main { 
@@ -31,30 +32,41 @@ main {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    min-width: min-content;
+    min-width: 17rem;
+    max-width: 17rem;
 
     background-color: white;
     padding: 1rem;
     border-radius: calc(var(--border-radius) * 2);
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 .option-container{
     display: flex;
+    flex-flow: row wrap;
     align-items: center;
+    justify-content: space-between;
     gap: 1rem;
 }
 .option-container .hex-to-rgb, .option-container .rgb-to-hex {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: 1;
     gap: 0.5rem;
     cursor: pointer;
     padding: 0.5rem;
-    width: 100%;
     border: var(--border);
     border-radius: var(--border-radius);
-
     font-size: 1rem;
+    white-space: nowrap;
 }
 .active-option{
+    background-color: var(--main-color);
+    color: white;
+}
+.option-container .hex-to-rgb:hover, .option-container .rgb-to-hex:hover {
     background-color: var(--main-color);
     color: white;
 }
@@ -67,6 +79,7 @@ main {
 }
 .input-container {
     display: flex;
+    flex-flow: column;
     align-items: center;
     gap: 1rem;
 }
@@ -83,6 +96,7 @@ main {
 }
 .input-wrapper input {
     padding: 0.5rem;
+    width: 100%;
     border: none;
     border-radius: var(--border-radius);
     border: var(--border);
@@ -122,12 +136,12 @@ main {
     height: 6rem;
     padding: 1rem;
     background-color: #aaaaaa;
-    border-radius: 0 0 calc(var(--border-radius) * 2) calc(var(--border-radius) * 2);
+    border-radius: calc(var(--border-radius) * 2);
 
     transition: all 400ms cubic-bezier(.47,1.64,.41,.8);
 }
 .color-wrapper.active-color {
-    transform: translateY(125%);
+    transform: translateY(100%);
 }
 .color-content-wrapper {
     display: flex;
@@ -136,9 +150,21 @@ main {
     opacity: 0.4;
 }
 .result {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.result i:hover {
+    cursor: pointer;
+    scale: 1.15;
+}
+.copy-button {
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 .error-message {
-    color: var(--error);
+    color: var(--main-color);
     font-weight: bold;
 }
