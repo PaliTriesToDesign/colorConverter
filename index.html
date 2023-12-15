@@ -10,7 +10,6 @@
 </head>
 <body>
     <main class="main">
-        <h1 class="title">Color Converter</h1>
         <div class="option-container">
             <div class="option-button hex-to-rgb active-option">
                 <p>Hex to RGB</p>
@@ -20,38 +19,26 @@
             </div>
         </div>
 
-        <div class="color-options-wrapper">
-            <div class="container">
-                <div class="input-container">
-                    <label for="hex">Hex:</label>
-                    <div class="input-wrapper">
-                        <p>#</p>
-                        <input type="text" id="hex" placeholder="Hex Code">
-                    </div>
-                    <button class="convert-button">
-                        <i class="fa-solid fa-arrows-turn-to-dots"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="colors">
-                <div class="color-wrapper">
-                    <div class="color-preview">
-                    </div>
-                    <p>Color</p>
-                </div>
-                <div class="color-wrapper">
-                    <div class="shade-color">
-                    </div>
-                    <p>Shade</p>
-                </div>
-                <div class="color-wrapper">
-                    <div class="complementary-color">
-                    </div>
-                    <p>Comp</p>
-                </div>
+        <div class="input-container">
+            <label for="hex">HEX:</label>
+            <div class="input-wrapper">
+                <p>#</p>
+                <input type="text" id="hex" placeholder="">
+                <button class="convert-button">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                </button>
             </div>
         </div>
 
-    </main>
+        <div class="colors">
+            <div class="color-wrapper">
+                <div class="color-content-wrapper">
+                    <p>rgb(255, 255, 0)</p>
+                    <i class="fa-regular fa-clone"></i>
+                </div>
+            </div>
+        </div>
+    </main> 
+
 </body>
 </html>
