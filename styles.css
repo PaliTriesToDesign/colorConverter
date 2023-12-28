@@ -101,6 +101,11 @@ main {
     border-radius: var(--border-radius);
     border: var(--border);
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 .convert-button {
     background-color: var(--main-color);
     border: var(--border);

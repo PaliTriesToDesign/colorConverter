@@ -8,33 +8,44 @@
 const hexDigits = '0123456789ABCDEF';
 const mainContainer = document.querySelector('.main');
 const optionsButtons = document.querySelectorAll('.option-button');
+const hexToRgbButton = document.getElementById('hexToRgb');
+const rgbToHexButton = document.getElementById('rgbToHex');
+const colorPreview = document.querySelector('.color-wrapper');
 
-optionsButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        
-        if(document.querySelector('.input-container')){
-            document.querySelector('.input-container').remove();
-        }
-        
-        let inputContainer = document.createElement('div');
+hexToRgbButton.addEventListener('click', () => {
+    reset(hexToRgbButton, rgbToHexButton, colorPreview);
 
-        if(button.classList.contains('hex-to-rgb')){
-            resetStates(optionsButtons[1], document.querySelector('.result'), document.querySelector('.color-wrapper'));
-            hexFunctionalities(inputContainer, mainContainer);
-        } else if(button.classList.contains('rgb-to-hex')){
-            resetStates(optionsButtons[0], document.querySelector('.result'), document.querySelector('.color-wrapper'));
-            rgbFunctionalities(inputContainer, mainContainer);
-        };
+    if(document.querySelector('.input-container')){
+        document.querySelector('.input-container').remove();
+    };
 
-        optionsButtons.forEach(button => {
-            button.classList.remove('active-option');
-        });
-
-        button.classList.add('active-option');
-    });
+    toggleActiveOptionClass(hexToRgbButton, rgbToHexButton);
+    let inputContainer = document.createElement('div');
+    hexFunctionalities(inputContainer, mainContainer);
 });
 
+rgbToHexButton.addEventListener('click', () => {
+    reset(hexToRgbButton, rgbToHexButton, colorPreview);
+    
+    if(document.querySelector('.input-container')){
+        document.querySelector('.input-container').remove();
+    };
+    toggleActiveOptionClass(rgbToHexButton, hexToRgbButton);
+    let inputContainer = document.createElement('div');
+    rgbFunctionalities(inputContainer, mainContainer);
+});
 
+function toggleActiveOptionClass(button1, button2){
+    button1.classList.add('active-option');
+    button2.classList.remove('active-option');
+};
+
+function reset(button1, button2, colorContainer){
+    button1.classList.remove('active-option');
+    button2.classList.remove('active-option');
+    colorContainer.classList.remove('active-color');
+
+};
 
 function getBrightness(color) {
     // Extract the red, green, and blue components
@@ -85,7 +96,7 @@ function createHexInput(){
     inputWrapper.classList.add('input-wrapper');
     inputWrapper.innerHTML = `
         <p>#</p>
-        <input pattern="[a-zA-Z0-9]" type="text" id="hex" placeholder="">
+        <input pattern="[a-zA-Z0-9]" type="text" id="hex" placeholder="Hex Code" maxlength="6">
         <button class="convert-button">
             <i class="fa-solid fa-arrow-rotate-left"></i>
         </button>
@@ -98,6 +109,11 @@ function hexFunctionalities(inputContainer, mainContainer){
     inputContainer.classList.add('input-container');
     mainContainer.appendChild(inputContainer);
     inputContainer.appendChild(createHexInput());
+    
+    convertButton(inputContainer);
+};
+
+function convertButton(inputContainer){
     const convertButton = document.querySelector('.convert-button');
     const colorPreview = document.querySelector('.color-wrapper');
     const userInput = document.querySelector('input[type="text"]');
@@ -127,7 +143,7 @@ function hexFunctionalities(inputContainer, mainContainer){
             createWarningMessage(result, body);
         };
     });
-};
+}
 
 function rgbFunctionalities(inputContainer, mainContainer){
     inputContainer.classList.add('input-container');
@@ -140,9 +156,9 @@ function createRgbInput(){
     inputWrapper.classList.add('input-wrapper');
     inputWrapper.innerHTML = `
         <p>rgb</p>
-        <input type="text" id="red" placeholder="0">
-        <input type="text" id="green" placeholder="0">
-        <input type="text" id="blue" placeholder="0">
+        <input type="number" id="red" placeholder="0" min="0" max="255">
+        <input type="number" id="green" placeholder="0" min="0" max="255">
+        <input type="number" id="blue" placeholder="0" min="0" max="255">
         <button class="convert-button">
             <i class="fa-solid fa-arrow-rotate-left"></i>
         </button>
@@ -150,7 +166,9 @@ function createRgbInput(){
 
     return inputWrapper;
 };
+function checkRgbInput(){
 
+}
 function createResults(result, hexValue){
     removeMessages();
     result.classList.add('result');
@@ -169,7 +187,6 @@ function createResults(result, hexValue){
         }, 1000);
     });
 };
-
 function createWarningMessage(result, body){
     removeMessages();
     result.classList.add('error-message');
