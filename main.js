@@ -156,9 +156,9 @@ function createRgbInput(){
     inputWrapper.classList.add('input-wrapper');
     inputWrapper.innerHTML = `
         <p>rgb</p>
-        <input type="number" id="red" placeholder="0" min="0" max="255">
-        <input type="number" id="green" placeholder="0" min="0" max="255">
-        <input type="number" id="blue" placeholder="0" min="0" max="255">
+        <input type="number" id="red" placeholder="000" min="0" max="255" maxlength="3">
+        <input type="number" id="green" placeholder="000" min="0" max="255" maxlength="3">
+        <input type="number" id="blue" placeholder="000" min="0" max="255" maxlength="3">
         <button class="convert-button">
             <i class="fa-solid fa-arrow-rotate-left"></i>
         </button>
@@ -167,7 +167,7 @@ function createRgbInput(){
     return inputWrapper;
 };
 function checkRgbInput(){
-
+    // Empty for now
 }
 function createResults(result, hexValue){
     removeMessages();
